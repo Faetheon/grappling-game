@@ -18,6 +18,10 @@ public class RigidbodyMovement
 
     public void Apply(Rigidbody rigidbody, Vector3 direction)
     {
-        rigidbody.AddForce(direction * _acceleration, ForceMode.Acceleration);
+        float velocityAlongDirection = Vector3.Dot(rigidbody.velocity, direction);
+        if (velocityAlongDirection < _topSpeed)
+        {
+            rigidbody.AddForce(direction * _acceleration, ForceMode.Acceleration);
+        }
     }
 }
