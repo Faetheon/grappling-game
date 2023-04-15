@@ -6,9 +6,9 @@ using NaughtyAttributes;
 [System.Serializable]
 public class CharacterState
 {
-    [SerializeField, ReadOnly]
+    [SerializeField, ReadOnly, AllowNesting]
     private Character _character;
-    [SerializeField, ReadOnly]
+    [SerializeField, ReadOnly, AllowNesting]
     private float _startTime;
 
     public Character Character => _character;
