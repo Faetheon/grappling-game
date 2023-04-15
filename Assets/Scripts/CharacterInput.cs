@@ -22,6 +22,10 @@ public class CharacterInput : MonoBehaviour
         // TODO: change this to use the normal of the player's contact with ground
         return Vector3.ProjectOnPlane(TransformStrafeToAimSpace(), Vector3.up).normalized;
     }
+    public void RotateAimPivot(float x, float y, float z, Space space)
+    {
+        _aimRotationPivot.Rotate(x, y, z, space);
+    }
     private Vector3 TransformStrafeToAimSpace()
     {
         return _aim.TransformDirection(ConvertStrafeTo3D());

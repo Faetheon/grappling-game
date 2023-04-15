@@ -8,8 +8,11 @@ public class PlayerInputInterface : MonoBehaviour
     private PlayerInput _input;
     [SerializeField]
     private string _strafeActionName = "Strafe";
+    [SerializeField]
+    private string _aimDeltaActionName = "AimDelta";
 
-    public event Action<Vector2> OnStrafe;
+    public event Action<Vector2> OnStrafe = delegate { };
+    public event Action<Vector2> OnAimDelta = delegate { };
 
     private void Awake()
     {
@@ -26,6 +29,10 @@ public class PlayerInputInterface : MonoBehaviour
         if (action.name == _strafeActionName)
         {
             OnStrafe(obj.ReadValue<Vector2>());
+        }
+        if (action.name == _aimDeltaActionName)
+        {
+            OnAimDelta(obj.ReadValue<Vector2>());
         }
     }
 }
