@@ -209,6 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _input: {fileID: 8552221351707194650}
   _strafeActionName: Strafe
+  _aimDeltaActionName: AimDelta
 --- !u!114 &4040580230963052931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,8 +222,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f1bfc5c79bccf4fa13d360fba9b991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _configuration: {fileID: 11400000, guid: 2ca7abf25cd6b0d4c965b6b378b89076, type: 2}
   _inputInterface: {fileID: 5395805609336987035}
   _characterInput: {fileID: 2980125455470511419}
+  _aimDelta: {x: 0, y: 0}
 --- !u!114 &2980125455470511419
 MonoBehaviour:
   m_ObjectHideFlags: 0

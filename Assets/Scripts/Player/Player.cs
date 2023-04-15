@@ -6,6 +6,8 @@ using NaughtyAttributes;
 public class Player : MonoBehaviour
 {
     [SerializeField]
+    private PlayerConfiguration _configuration;
+    [SerializeField]
     private PlayerInputInterface _inputInterface;
     [SerializeField]
     private CharacterInput _characterInput;
@@ -28,6 +30,8 @@ public class Player : MonoBehaviour
     }
     private void InputInterface_OnAimDelta(Vector2 obj)
     {
+        obj = obj * _configuration.AimSensitivity;
+        obj.SetY2(_configuration.AimYInversionSign);
         _characterInput.RotateAimPivot(0, obj.x, 0, Space.World);
         _characterInput.RotateAimPivot(obj.y, 0, 0, Space.Self);
     }
