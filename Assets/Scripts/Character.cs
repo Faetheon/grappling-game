@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private Rigidbody _rigidbody;
+    [SerializeField]
+    private CharacterConfiguration _configuration;
+    [SerializeField]
+    private CharacterInput _input;
 
-    // Update is called once per frame
-    void Update()
+    public void ApplyWalk()
     {
-        
+        _configuration.ApplyWalk(_rigidbody, _input.GetMovementVector());
     }
 }

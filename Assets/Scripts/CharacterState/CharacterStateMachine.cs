@@ -16,6 +16,10 @@ public class CharacterStateMachine : MonoBehaviour
         _isWalking = new CharacterIsWalking(_character);
         SetState(_isWalking);
     }
+    private void Update()
+    {
+        _currentState.Update();
+    }
     public void SetState(CharacterState state)
     {
         if (_currentState != null)
