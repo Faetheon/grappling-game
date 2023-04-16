@@ -23,17 +23,9 @@ public class CharacterInput : MonoBehaviour
         // TODO: change this to use the normal of the player's contact with ground
         return Vector3.ProjectOnPlane(TransformStrafeToAimSpace(), Vector3.up).normalized;
     }
-    public void RotateAimPivot(float x, float y, float z, Space space)
+    public void SetAimPivotLocalEulerAngles(float x, float y, float z)
     {
-        _aimPivot.Rotate(x, y, z, space);
-    }
-    public Vector3 GetAimPivotLocalEulerAngles()
-    {
-        return _aimPivot.localEulerAngles;
-    }
-    public void SetAimPivotLocalEulerAngles(Vector3 euler)
-    {
-        _aimPivot.localEulerAngles = euler;
+        _aimPivot.localEulerAngles = new Vector3(x, y, z);
     }
     private Vector3 TransformStrafeToAimSpace()
     {

@@ -13,9 +13,7 @@ public class Player : MonoBehaviour
     private CharacterInput _characterInput;
 
     [SerializeField, ReadOnly]
-    private Vector2 _aimDelta;
-    [SerializeField, ReadOnly]
-    private float _verticalAngle = 0;
+    private Vector2 _aim;
 
     private void Awake()
     {
@@ -33,9 +31,8 @@ public class Player : MonoBehaviour
     private void InputInterface_OnAimDelta(Vector2 obj)
     {
         obj = ConvertAimDelta(obj);
-        _characterInput.RotateAimPivot(0, obj.x, 0, Space.World);
-        _characterInput.RotateAimPivot(obj.y, 0, 0, Space.Self);
-        ClampAimPivotRotation();
+        AccumulateAimDelta(obj);
+        _characterInput.SetAimPivotLocalEulerAngles(_aim.y, _aim.x, 0);
     }
     private Vector2 ConvertAimDelta(Vector2 delta)
     {
@@ -43,17 +40,9 @@ public class Player : MonoBehaviour
         delta.y *= _configuration.AimYInversionSign;
         return delta;
     }
-    private void ClampAimPivotRotation()
+    private void AccumulateAimDelta(Vector2 delta)
     {
-        Vector3 euler = _characterInput.GetAimPivotLocalEulerAngles();
-        if (euler.x <= 180)
-        {
-            euler.x = Mathf.Min(euler.x, _configuration.MaxVerticalAimAngle);
-        }
-        else
-        {
-            euler.x = Mathf.Max(euler.x, 360 - _configuration.MaxVerticalAimAngle);
-        }
-        _characterInput.SetAimPivotLocalEulerAngles(euler);
+        _aim += delta;
+        _aim.y = Mathf.Clamp(_aim.y, _configuration.MinVerticalAimAngle, _configuration.MaxVerticalAimAngle);
     }
 }
