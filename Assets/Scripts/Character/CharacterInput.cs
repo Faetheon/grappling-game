@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using NaughtyAttributes;
 
 public class CharacterInput : MonoBehaviour
 {
-    [SerializeField]
-    private Transform _aimRotationPivot;
+    [SerializeField, FormerlySerializedAs("_aimRotationPivot")]
+    private Transform _aimPivot;
     [SerializeField]
     private Transform _aim;
 
@@ -24,7 +25,15 @@ public class CharacterInput : MonoBehaviour
     }
     public void RotateAimPivot(float x, float y, float z, Space space)
     {
-        _aimRotationPivot.Rotate(x, y, z, space);
+        _aimPivot.Rotate(x, y, z, space);
+    }
+    public Vector3 GetAimPivotLocalEulerAngles()
+    {
+        return _aimPivot.localEulerAngles;
+    }
+    public void SetAimPivotLocalEulerAngles(Vector3 euler)
+    {
+        _aimPivot.localEulerAngles = euler;
     }
     private Vector3 TransformStrafeToAimSpace()
     {

@@ -138,7 +138,7 @@
                     "id": "be025a75-0090-4317-a3e5-dcfb1b014259",
                     "path": "<Mouse>/delta",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "ScaleVector2(x=0.1,y=0.1)",
                     "groups": "",
                     "action": "AimDelta",
                     "isComposite": false,
