@@ -11,8 +11,18 @@ public class Character : MonoBehaviour
     [SerializeField]
     private CharacterInput _input;
 
-    public void Walk()
+    public float MaxJumpTime => _configuration.MaxJumpTime;
+
+    public void ApplyWalkingMovement()
     {
-        _configuration.Walk(_rigidbody, _input.GetMovementVector());
+        _configuration.ApplyWalkingMovement(_rigidbody, _input.GetMovementVector());
+    }
+    public void ApplyAirMovement()
+    {
+        _configuration.ApplyAirMovement(_rigidbody, _input.GetMovementVector());
+    }
+    public void SetJumpSpeed()
+    {
+        _configuration.SetJumpSpeed(_rigidbody);
     }
 }
