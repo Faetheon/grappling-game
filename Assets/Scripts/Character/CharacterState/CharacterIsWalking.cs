@@ -13,6 +13,6 @@ public class CharacterIsWalking : CharacterState
     public override void Update()
     {
         base.Update();
-        Character.ApplyWalk();
+        Character.Walk();
     }
 }

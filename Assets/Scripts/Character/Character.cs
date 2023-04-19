@@ -11,8 +11,8 @@ public class Character : MonoBehaviour
     [SerializeField]
     private CharacterInput _input;
 
-    public void ApplyWalk()
+    public void Walk()
     {
-        _configuration.ApplyWalk(_rigidbody, _input.GetMovementVector());
+        _configuration.Walk(_rigidbody, _input.GetMovementVector());
     }
 }

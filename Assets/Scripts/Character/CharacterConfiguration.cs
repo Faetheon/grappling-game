@@ -6,10 +6,10 @@ using UnityEngine;
 public class CharacterConfiguration : ScriptableObject
 {
     [SerializeField]
-    private RigidbodyMovement _walkingMovement = new RigidbodyMovement(20, 10);
+    private RigidbodyMovement _walkingMovement = new RigidbodyMovement(20, 10, 2);
 
-    public void ApplyWalk(Rigidbody rigidbody, Vector3 direction)
+    public void Walk(Rigidbody rigidbody, Vector3 direction)
     {
-        _walkingMovement.Apply(rigidbody, direction);
+        _walkingMovement.Move(rigidbody, direction);
     }
 }
