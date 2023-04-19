@@ -210,6 +210,8 @@ MonoBehaviour:
   _input: {fileID: 8552221351707194650}
   _strafeActionName: Strafe
   _aimDeltaActionName: AimDelta
+  _cursorGrabActionName: CursorGrab
+  _cursorReleaseActionName: CursorRelease
 --- !u!114 &4040580230963052931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,7 +227,7 @@ MonoBehaviour:
   _configuration: {fileID: 11400000, guid: 2ca7abf25cd6b0d4c965b6b378b89076, type: 2}
   _inputInterface: {fileID: 5395805609336987035}
   _characterInput: {fileID: 2980125455470511419}
-  _aimDelta: {x: 0, y: 0}
+  _aim: {x: 0, y: 0}
 --- !u!114 &2980125455470511419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50e7b3a1b24b16e44adb20699ec6de1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _aimRotationPivot: {fileID: 1735593746310802638}
+  _aimPivot: {fileID: 1735593746310802638}
   _aim: {fileID: 2003916709146607135}
   _strafe: {x: 0, y: 0}
 --- !u!1 &5261483379809489354
@@ -251,6 +253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1735593746310802638}
   - component: {fileID: 5572959912123796085}
+  - component: {fileID: 8233799823374709700}
   m_Layer: 0
   m_Name: CameraRotationPivot
   m_TagString: Untagged
@@ -286,6 +289,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerBody: {fileID: 5542516354823007053}
+--- !u!114 &8233799823374709700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5261483379809489354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cbfcc36212a3ac4c8d0bafaa5524263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputInterface: {fileID: 5395805609336987035}
 --- !u!1 &6470234396318936936
 GameObject:
   m_ObjectHideFlags: 0
