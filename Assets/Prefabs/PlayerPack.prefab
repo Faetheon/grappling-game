@@ -365,6 +365,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerBody: {fileID: 5542516354823007053}
+  _isSleepingEvents: {fileID: 3328225573913528287}
+  _followSmoothing: 100
 --- !u!114 &8233799823374709700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,6 +390,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1061297712684344522}
   - component: {fileID: 5542516354823007053}
+  - component: {fileID: 3328225573913528287}
   m_Layer: 0
   m_Name: CharacterBody
   m_TagString: Untagged
@@ -426,6 +429,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &3328225573913528287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6470234396318936936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3ffd06d79183d142948b8e7383db6fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 5542516354823007053}
 --- !u!1 &8599402729860893073
 GameObject:
   m_ObjectHideFlags: 0
