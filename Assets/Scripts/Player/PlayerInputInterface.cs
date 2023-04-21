@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInputInterface : MonoBehaviour
+public partial class PlayerInputInterface : MonoBehaviour
 {
     [SerializeField]
     private PlayerInput _input;
@@ -16,6 +16,8 @@ public class PlayerInputInterface : MonoBehaviour
     private string _cursorReleaseActionName = "CursorRelease";
     [SerializeField]
     private string _jumpActionName = "Jump";
+    [SerializeField]
+    private string _grappleActionName = "Grapple";
 
     public event Action<Vector2> OnStrafe = delegate { };
     public event Action<Vector2> OnAimDelta = delegate { };
@@ -23,6 +25,8 @@ public class PlayerInputInterface : MonoBehaviour
     public event Action OnCursorRelease = delegate { };
     public event Action OnJumpStart = delegate { };
     public event Action OnJumpStop = delegate { };
+    public event Action OnGrappleStart = delegate { };
+    public event Action OnGrappleStop = delegate { };
 
     private void Awake()
     {
@@ -38,30 +42,47 @@ public class PlayerInputInterface : MonoBehaviour
         InputAction action = obj.action;
         if (action.name == _strafeActionName)
         {
-            OnStrafe(obj.ReadValue<Vector2>());
+            ProcessValueAction(obj, OnStrafe);
         }
         if (action.name == _aimDeltaActionName)
         {
-            OnAimDelta(obj.ReadValue<Vector2>());
+            ProcessValueAction(obj, OnAimDelta);
         }
         if (action.name == _cursorGrabActionName)
         {
-            OnCursorGrab();
+            ProcessTriggerAction(obj, OnCursorGrab);
         }
         if (action.name == _cursorReleaseActionName)
         {
-            OnCursorRelease();
+            ProcessTriggerAction(obj, OnCursorRelease);
         }
         if (action.name == _jumpActionName)
         {
-            if (obj.performed)
-            {
-                OnJumpStart();
-            }
-            if (obj.canceled)
-            {
-                OnJumpStop();
-            }
+            ProcessStartStopAction(obj, OnJumpStart, OnJumpStop);
+        }
+        if (action.name == _grappleActionName)
+        {
+            ProcessStartStopAction(obj, OnGrappleStart, OnGrappleStop);
+        }
+    }
+    private void ProcessValueAction<T>(InputAction.CallbackContext context, Action<T> valueChangedAction)
+        where T : struct
+    {
+        valueChangedAction(context.ReadValue<T>());
+    }
+    private void ProcessTriggerAction(InputAction.CallbackContext context, Action triggerAction)
+    {
+        triggerAction();
+    }
+    private void ProcessStartStopAction(InputAction.CallbackContext context, Action startAction, Action stopAction)
+    {
+        if (context.performed)
+        {
+            startAction();
+        }
+        if (context.canceled)
+        {
+            stopAction();
         }
     }
 }

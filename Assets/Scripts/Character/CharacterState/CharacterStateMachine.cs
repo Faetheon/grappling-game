@@ -12,6 +12,8 @@ public class CharacterStateMachine : MonoBehaviour
     private CharacterIsJumping _isJumping;
     [SerializeField]
     private CharacterIsAirborn _isAirborn;
+    [SerializeField]
+    private CharacterIsFiringGrapple _isFiringGrapple;
 
     private CharacterState _currentState;
 
@@ -20,6 +22,7 @@ public class CharacterStateMachine : MonoBehaviour
         _isWalking = new CharacterIsWalking(_character);
         _isJumping = new CharacterIsJumping(_character);
         _isAirborn = new CharacterIsAirborn(_character);
+        _isFiringGrapple = new CharacterIsFiringGrapple(_character);
         SetState(_isWalking);
     }
     private void Update()
@@ -37,6 +40,10 @@ public class CharacterStateMachine : MonoBehaviour
     public void SetIsAirborn()
     {
         SetState(_isAirborn);
+    }
+    public void SetIsFiringGrapple()
+    {
+        SetState(_isFiringGrapple);
     }
     public void SetState(CharacterState state)
     {
