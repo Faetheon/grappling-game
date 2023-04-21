@@ -15,3 +15,12 @@ MonoBehaviour:
   _walkingMovement:
     _acceleration: 50
     _topSpeed: 5
+    _decelerationDrag: 1
+    _decelerateThreshold: 0.001
+  _jumpSpeed: 10
+  _maxJumpTime: 0.5
+  _airMovement:
+    _acceleration: 25
+    _topSpeed: 5
+    _decelerationDrag: 1
+    _decelerateThreshold: 0.001

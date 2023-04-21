@@ -150,6 +150,8 @@ MonoBehaviour:
   _rigidbody: {fileID: 5542516354823007053}
   _configuration: {fileID: 11400000, guid: 24c5e498ca15bdb4194576578f3a1459, type: 2}
   _input: {fileID: 2980125455470511419}
+  _stateMachine: {fileID: 814805754047474590}
+  _contact: {fileID: 6415677361417741304}
 --- !u!114 &814805754047474590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,6 +166,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _character: {fileID: 4509863569096110272}
   _isWalking:
+    _character: {fileID: 0}
+    _startTime: 0
+  _isJumping:
+    _character: {fileID: 0}
+    _startTime: 0
+  _isAirborn:
     _character: {fileID: 0}
     _startTime: 0
 --- !u!114 &8552221351707194650
@@ -213,6 +221,7 @@ MonoBehaviour:
   _aimDeltaActionName: AimDelta
   _cursorGrabActionName: CursorGrab
   _cursorReleaseActionName: CursorRelease
+  _jumpActionName: Jump
 --- !u!114 &4040580230963052931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,9 +234,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f1bfc5c79bccf4fa13d360fba9b991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _character: {fileID: 4509863569096110272}
   _configuration: {fileID: 11400000, guid: 2ca7abf25cd6b0d4c965b6b378b89076, type: 2}
   _inputInterface: {fileID: 5395805609336987035}
-  _characterInput: {fileID: 2980125455470511419}
   _aim: {x: 0, y: 0}
 --- !u!114 &2980125455470511419
 MonoBehaviour:
@@ -365,8 +374,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerBody: {fileID: 5542516354823007053}
-  _isSleepingEvents: {fileID: 3328225573913528287}
-  _followSmoothing: 100
 --- !u!114 &8233799823374709700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,6 +398,7 @@ GameObject:
   - component: {fileID: 1061297712684344522}
   - component: {fileID: 5542516354823007053}
   - component: {fileID: 3328225573913528287}
+  - component: {fileID: 6415677361417741304}
   m_Layer: 0
   m_Name: CharacterBody
   m_TagString: Untagged
@@ -442,6 +450,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 5542516354823007053}
+--- !u!114 &6415677361417741304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6470234396318936936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5daba6a3265dbda46ae919e76c7947b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbodyIsSleeping: {fileID: 3328225573913528287}
+  _collider: {fileID: 1610059426511784925}
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  _boxVerticalExtent: 0.1
 --- !u!1 &8599402729860893073
 GameObject:
   m_ObjectHideFlags: 0

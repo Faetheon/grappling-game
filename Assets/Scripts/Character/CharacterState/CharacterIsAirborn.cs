@@ -3,13 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class CharacterIsWalking : CharacterState
+public class CharacterIsAirborn : CharacterState
 {
-    public CharacterIsWalking(Character character) 
-        : base(character)
-    {
-
-    }
+    public CharacterIsAirborn(Character character) : base(character) { }
     public override void OnEnable()
     {
         base.OnEnable();
@@ -23,23 +19,11 @@ public class CharacterIsWalking : CharacterState
     public override void Update()
     {
         base.Update();
-        Character.ApplyWalkingMovement();
-    }
-    public override void TriggerAction(CharacterAction action)
-    {
-        base.TriggerAction(action);
-        if (action == CharacterAction.StartJumping)
-        {
-            Character.SetIsJumping();
-        }
+        Character.ApplyAirMovement();
     }
 
     private void Character_OnIsTouchingFloorChanged(bool obj)
     {
-        if (!obj)
-        {
-            Character.SetIsAirborn();
-        }
+        Character.SetIsWalking();
     }
-
 }

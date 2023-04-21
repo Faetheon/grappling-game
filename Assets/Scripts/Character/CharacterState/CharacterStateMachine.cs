@@ -8,17 +8,35 @@ public class CharacterStateMachine : MonoBehaviour
     private Character _character;
     [SerializeField]
     private CharacterIsWalking _isWalking;
+    [SerializeField]
+    private CharacterIsJumping _isJumping;
+    [SerializeField]
+    private CharacterIsAirborn _isAirborn;
 
     private CharacterState _currentState;
 
     private void Awake()
     {
         _isWalking = new CharacterIsWalking(_character);
+        _isJumping = new CharacterIsJumping(_character);
+        _isAirborn = new CharacterIsAirborn(_character);
         SetState(_isWalking);
     }
     private void Update()
     {
         _currentState.Update();
+    }
+    public void SetIsWalking()
+    {
+        SetState(_isWalking);
+    }
+    public void SetIsJumping()
+    {
+        SetState(_isJumping);
+    }
+    public void SetIsAirborn()
+    {
+        SetState(_isAirborn);
     }
     public void SetState(CharacterState state)
     {

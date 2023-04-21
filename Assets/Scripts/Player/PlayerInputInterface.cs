@@ -14,11 +14,15 @@ public class PlayerInputInterface : MonoBehaviour
     private string _cursorGrabActionName = "CursorGrab";
     [SerializeField]
     private string _cursorReleaseActionName = "CursorRelease";
+    [SerializeField]
+    private string _jumpActionName = "Jump";
 
     public event Action<Vector2> OnStrafe = delegate { };
     public event Action<Vector2> OnAimDelta = delegate { };
     public event Action OnCursorGrab = delegate { };
     public event Action OnCursorRelease = delegate { };
+    public event Action OnJumpStart = delegate { };
+    public event Action OnJumpStop = delegate { };
 
     private void Awake()
     {
@@ -47,6 +51,17 @@ public class PlayerInputInterface : MonoBehaviour
         if (action.name == _cursorReleaseActionName)
         {
             OnCursorRelease();
+        }
+        if (action.name == _jumpActionName)
+        {
+            if (obj.performed)
+            {
+                OnJumpStart();
+            }
+            if (obj.canceled)
+            {
+                OnJumpStop();
+            }
         }
     }
 }

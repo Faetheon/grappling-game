@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class CharacterIsJumping : CharacterState
 {
     public CharacterIsJumping(Character character) : base(character) { }
@@ -14,7 +15,7 @@ public class CharacterIsJumping : CharacterState
 
         if (TimeSpentInState >= Character.MaxJumpTime)
         {
-            // Set state to "air"
+            Character.SetIsAirborn();
         }
     }
     public override void TriggerAction(CharacterAction action)
@@ -22,7 +23,7 @@ public class CharacterIsJumping : CharacterState
         base.TriggerAction(action);
         if (action == CharacterAction.StopJumping)
         {
-            // Set state to "air"
+            Character.SetIsAirborn();
         }
     }
 }

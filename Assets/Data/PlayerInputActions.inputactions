@@ -1,5 +1,5 @@
 {
-    "name": "Player Input Actions",
+    "name": "PlayerInputActions",
     "maps": [
         {
             "name": "Default Action Map",
@@ -33,6 +33,14 @@
                     "name": "ReleaseCursor",
                     "type": "Button",
                     "id": "e286c988-07df-4fcc-b2e1-1402f0e128a2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "5c60903e-e919-4bce-9204-0a6587b0a482",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -179,6 +187,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ReleaseCursor",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8a14e7a3-820b-45a2-85cc-3dc97be21ff4",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

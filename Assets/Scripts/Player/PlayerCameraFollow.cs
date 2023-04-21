@@ -7,7 +7,7 @@ public class PlayerCameraFollow : MonoBehaviour
     [SerializeField]
     private Rigidbody _playerBody;
 
-    private void FixedUpdate()
+    private void Update()
     {
         transform.position = _playerBody.position;
     }
