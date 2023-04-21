@@ -21,7 +21,7 @@ public class ColliderContact : MonoBehaviour
     private void Reset()
     {
         _rigidbodyIsSleeping = GetComponent<RigidbodyIsSleepingEvents>();
-        _collider = GetComponent<Collider>();
+        _collider = GetComponentInChildren<Collider>();
     }
     private void OnDrawGizmosSelected()
     {

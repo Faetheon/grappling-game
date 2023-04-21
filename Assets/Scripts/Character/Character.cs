@@ -36,13 +36,17 @@ public class Character : MonoBehaviour
     {
         _configuration.ApplyWalkingMovement(_rigidbody, _input.GetMovementVector());
     }
+    public void SetJumpSpeed()
+    {
+        _configuration.SetJumpSpeed(_rigidbody);
+    }
     public void ApplyAirMovement()
     {
         _configuration.ApplyAirMovement(_rigidbody, _input.GetMovementVector());
     }
-    public void SetJumpSpeed()
+    public void ApplyWalkingWhileFiringGrappleMovement()
     {
-        _configuration.SetJumpSpeed(_rigidbody);
+        _configuration.ApplyWalkingWhileFiringGrappleMovement(_rigidbody, _input.GetMovementVector());
     }
 
     public void SetStrafe(Vector2 strafe)
