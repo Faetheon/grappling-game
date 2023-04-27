@@ -8,14 +8,18 @@ public struct GrappleProperties
     [SerializeField]
     private float _maxDistance;
     [SerializeField]
-    private float _travelSpeed;
+    private float _extendDuration;
+    [SerializeField]
+    private LayerMask _physicsCastMask;
 
     public float MaxDistance => _maxDistance;
-    public float TravelSpeed => _travelSpeed;
+    public float ExtendDuration => _extendDuration;
+    public LayerMask PhysicsCastMask => _physicsCastMask;
 
-    public GrappleProperties(float maxDistance, float travelSpeed)
+    public GrappleProperties(float maxDistance, float extendDuration, LayerMask physicsCastMask)
     {
         _maxDistance = maxDistance;
-        _travelSpeed = travelSpeed;
+        _extendDuration = extendDuration;
+        _physicsCastMask = physicsCastMask;
     }
 }

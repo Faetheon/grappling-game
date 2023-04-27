@@ -13,19 +13,29 @@ public class Character : MonoBehaviour
     [SerializeField]
     private CharacterStateMachine _stateMachine;
     [SerializeField]
+    private CharacterGrapple _grapple;
+    [SerializeField]
     private ColliderContact _contact;
 
     public float MaxJumpTime => _configuration.MaxJumpTime;
+    public GrappleProperties GrappleProperties => _configuration.Grapple;
 
     public event System.Action<bool> OnIsTouchingFloorChanged = delegate { };
+    public event Grapple.GrappleFinishedDelegate OnGrappleFinished = delegate { };
 
     private void Awake()
     {
+        _grapple.OnGrappleFinished += GrappleFinished;
         _contact.OnIsTouchingFloorChanged += Contact_OnIsTouchingFloorChanged;
     }
     private void OnDestroy()
     {
+        _grapple.OnGrappleFinished -= GrappleFinished;
         _contact.OnIsTouchingFloorChanged -= Contact_OnIsTouchingFloorChanged;
+    }
+    private void GrappleFinished(bool connectedToPoint)
+    {
+        OnGrappleFinished(connectedToPoint);
     }
     private void Contact_OnIsTouchingFloorChanged(bool obj)
     {
@@ -57,6 +67,10 @@ public class Character : MonoBehaviour
     {
         _input.SetAimPivotLocalEulerAngles(x, y, z);
     }
+    public Ray GetAimRay()
+    {
+        return _input.GetAimRay();
+    }
 
     public void SetIsWalking()
     {
@@ -73,5 +87,10 @@ public class Character : MonoBehaviour
     public void TriggerAction(CharacterAction action)
     {
         _stateMachine.TriggerAction(action);
+    }
+
+    public void FireGrapple()
+    {
+        _grapple.Fire();
     }
 }

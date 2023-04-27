@@ -20,11 +20,12 @@ public class CharacterConfiguration : ScriptableObject
     [Space]
 
     [SerializeField]
-    private GrappleProperties _grapple = new GrappleProperties(10, 10);
+    private GrappleProperties _grapple = new GrappleProperties(10, 0.5f, int.MaxValue);
     [SerializeField]
     private RigidbodyMovement _walkingWhileFiringGrappleMovement = new RigidbodyMovement(10, 2, 1);
 
     public float MaxJumpTime => _maxJumpTime;
+    public GrappleProperties Grapple => _grapple;
 
     public void ApplyWalkingMovement(Rigidbody rigidbody, Vector3 direction)
     {

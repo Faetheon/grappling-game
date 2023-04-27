@@ -8,6 +8,7 @@ public class CharacterIsFiringGrapple : CharacterState
     public override void OnEnable()
     {
         base.OnEnable();
+        Character.FireGrapple();
     }
     public override void OnDisable()
     {

@@ -35,4 +35,8 @@ public class CharacterInput : MonoBehaviour
     {
         return new Vector3(_strafe.x, 0, _strafe.y);
     }
+    public Ray GetAimRay()
+    {
+        return new Ray(_aim.position, _aim.forward);
+    }
 }

@@ -24,3 +24,14 @@ MonoBehaviour:
     _topSpeed: 5
     _decelerationDrag: 1
     _decelerateThreshold: 0.001
+  _grapple:
+    _maxDistance: 10
+    _extendDuration: 0.5
+    _physicsCastMask:
+      serializedVersion: 2
+      m_Bits: 1
+  _walkingWhileFiringGrappleMovement:
+    _acceleration: 10
+    _topSpeed: 2
+    _decelerationDrag: 1
+    _decelerateThreshold: 0.001
