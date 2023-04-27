@@ -5,7 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class CharacterIsFiringGrapple : CharacterState
 {
-    public CharacterIsFiringGrapple(Character character) : base(character) { }
     public override void OnEnable()
     {
         base.OnEnable();

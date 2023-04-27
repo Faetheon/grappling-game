@@ -20,9 +20,7 @@ public class CharacterConfiguration : ScriptableObject
     [Space]
 
     [SerializeField]
-    private float _maxGrappleLength = 10;
-    [SerializeField]
-    private float _grappleTravelSpeed = 10;
+    private GrappleProperties _grapple = new GrappleProperties(10, 10);
     [SerializeField]
     private RigidbodyMovement _walkingWhileFiringGrappleMovement = new RigidbodyMovement(10, 2, 1);
 

@@ -3,21 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 
-[System.Serializable]
-public class CharacterState
+public class CharacterState : MonoBehaviour
 {
-    [SerializeField, ReadOnly, AllowNesting]
+    [SerializeField]
     private Character _character;
-    [SerializeField, ReadOnly, AllowNesting]
+    [SerializeField, ReadOnly]
     private float _startTime;
 
     public Character Character => _character;
     public float TimeSpentInState => Time.time - _startTime;
 
-    public CharacterState(Character character)
-    {
-        _character = character;
-    }
     public virtual void OnEnable()
     {
         _startTime = Time.time;

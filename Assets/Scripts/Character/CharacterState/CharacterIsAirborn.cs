@@ -5,7 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class CharacterIsAirborn : CharacterState
 {
-    public CharacterIsAirborn(Character character) : base(character) { }
     public override void OnEnable()
     {
         base.OnEnable();

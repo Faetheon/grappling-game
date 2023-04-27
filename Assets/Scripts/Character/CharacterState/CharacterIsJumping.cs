@@ -5,8 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class CharacterIsJumping : CharacterState
 {
-    public CharacterIsJumping(Character character) : base(character) { }
-
     public override void Update()
     {
         base.Update();

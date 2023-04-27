@@ -19,15 +19,11 @@ public class CharacterStateMachine : MonoBehaviour
 
     private void Awake()
     {
-        _isWalking = new CharacterIsWalking(_character);
-        _isJumping = new CharacterIsJumping(_character);
-        _isAirborn = new CharacterIsAirborn(_character);
-        _isFiringGrapple = new CharacterIsFiringGrapple(_character);
+        _isWalking.enabled = false;
+        _isJumping.enabled = false;
+        _isAirborn.enabled = false;
+        _isFiringGrapple.enabled = false;
         SetState(_isWalking);
-    }
-    private void Update()
-    {
-        _currentState.Update();
     }
     public void SetIsWalking()
     {
@@ -49,10 +45,10 @@ public class CharacterStateMachine : MonoBehaviour
     {
         if (_currentState != null)
         {
-            _currentState.OnDisable();
+            _currentState.enabled = false;
         }
         _currentState = state;
-        _currentState.OnEnable();
+        _currentState.enabled = true;
     }
     public void TriggerAction(CharacterAction action)
     {
