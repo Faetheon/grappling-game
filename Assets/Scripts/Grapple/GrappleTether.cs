@@ -22,19 +22,19 @@ public class GrappleTether : MonoBehaviour
     }
     public void ExtendToPoint(Vector3 point)
     {
-        MoveLineRendererToPoint(point).OnComplete(ExtendComplete);
+        MoveLineRendererToPoint(transform.position, point).OnComplete(ExtendComplete);
     }
     public void Retract()
     {
-        MoveLineRendererToPoint(transform.position).OnComplete(RetractComplete);
+        MoveLineRendererToPoint(_linePositions[1], transform.position).OnComplete(RetractComplete);
     }
-    private TweenInterface MoveLineRendererToPoint(Vector3 point)
+    private TweenInterface MoveLineRendererToPoint(Vector3 start, Vector3 end)
     {
         if (!_isTweening)
         {
-            float percentOfMaxLength = ComputePercentOfMaxLength(point);
+            float percentOfMaxLength = ComputePercentOfMaxLength(start, end);
             float tweenTime = Mathf.Lerp(0, _grapple.ExtendDuration, percentOfMaxLength);
-            Tween tween = DOTween.To(GetTetherEndPosition, SetTetherEndPosition, point, tweenTime);
+            Tween tween = DOTween.To(GetTetherEndPosition, SetTetherEndPosition, end, tweenTime);
             
             _isTweening = true;
             _line.enabled = true;
@@ -57,9 +57,9 @@ public class GrappleTether : MonoBehaviour
         _line.enabled = false;
         OnRetracted();
     }
-    private float ComputePercentOfMaxLength(Vector3 endPoint)
+    private float ComputePercentOfMaxLength(Vector3 start, Vector3 end)
     {
-        float distance = Vector3.Distance(transform.position, endPoint);
+        float distance = Vector3.Distance(start, end);
         return Mathf.InverseLerp(0, _grapple.MaxDistance, distance);
     }
     private Vector3 GetTetherEndPosition()

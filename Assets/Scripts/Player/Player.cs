@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
         _inputInterface.OnAimDelta += InputInterface_OnAimDelta;
         _inputInterface.OnJumpStart += InputInterface_OnJumpStart;
         _inputInterface.OnJumpStop += InputInterface_OnJumpStop;
+        _inputInterface.OnGrappleStart += InputInterface_OnGrappleStart;
     }
     private void OnDestroy()
     {
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
         _inputInterface.OnAimDelta -= InputInterface_OnAimDelta;
         _inputInterface.OnJumpStart -= InputInterface_OnJumpStart;
         _inputInterface.OnJumpStop -= InputInterface_OnJumpStop;
+        _inputInterface.OnGrappleStart -= InputInterface_OnGrappleStart;
     }
 
     private void InputInterface_OnStrafe(Vector2 obj)
@@ -47,6 +49,10 @@ public class Player : MonoBehaviour
     private void InputInterface_OnJumpStop()
     {
         _character.TriggerAction(CharacterAction.StopJumping);
+    }
+    private void InputInterface_OnGrappleStart()
+    {
+        _character.TriggerAction(CharacterAction.StartGrappling);
     }
 
     private Vector2 ConvertAimDelta(Vector2 delta)

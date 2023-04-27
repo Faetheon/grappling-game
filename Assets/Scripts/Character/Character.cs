@@ -19,6 +19,7 @@ public class Character : MonoBehaviour
 
     public float MaxJumpTime => _configuration.MaxJumpTime;
     public GrappleProperties GrappleProperties => _configuration.Grapple;
+    public bool IsTouchingFloor => _contact.IsTouchingFloor;
 
     public event System.Action<bool> OnIsTouchingFloorChanged = delegate { };
     public event Grapple.GrappleFinishedDelegate OnGrappleFinished = delegate { };
@@ -83,6 +84,10 @@ public class Character : MonoBehaviour
     public void SetIsAirborn()
     {
         _stateMachine.SetIsAirborn();
+    }
+    public void SetIsFiringGrapple()
+    {
+        _stateMachine.SetIsFiringGrapple();
     }
     public void TriggerAction(CharacterAction action)
     {

@@ -20,6 +20,14 @@ public class CharacterIsAirborn : CharacterState
         base.Update();
         Character.ApplyAirMovement();
     }
+    public override void TriggerAction(CharacterAction action)
+    {
+        base.TriggerAction(action);
+        if (action == CharacterAction.StartGrappling)
+        {
+            Character.SetIsFiringGrapple();
+        }
+    }
 
     private void Character_OnIsTouchingFloorChanged(bool obj)
     {

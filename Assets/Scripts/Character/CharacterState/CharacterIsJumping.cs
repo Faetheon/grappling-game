@@ -23,5 +23,9 @@ public class CharacterIsJumping : CharacterState
         {
             Character.SetIsAirborn();
         }
+        if (action == CharacterAction.StartGrappling)
+        {
+            Character.SetIsFiringGrapple();
+        }
     }
 }

@@ -26,6 +26,10 @@ public class CharacterIsWalking : CharacterState
         {
             Character.SetIsJumping();
         }
+        if (action == CharacterAction.StartGrappling)
+        {
+            Character.SetIsFiringGrapple();
+        }
     }
 
     private void Character_OnIsTouchingFloorChanged(bool obj)
