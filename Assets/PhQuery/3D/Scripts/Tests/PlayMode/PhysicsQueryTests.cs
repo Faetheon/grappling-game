@@ -90,8 +90,17 @@ namespace PhQuery.PlayModeTests
         public IEnumerator TestGetHitCache()
         {
             CreatePhysicsQuery();
-            RaycastHitCache cache = _query.GetHitCache();
-            Assert.NotNull(cache);
+            RaycastHit[] cache = _query.GetHitCache();
+            Assert.AreEqual(cache.Length, _query.MaxCachedHits);
+
+            _query.MaxCachedHits++;
+            cache = _query.GetHitCache();
+            Assert.AreEqual(cache.Length, _query.MaxCachedHits);
+
+            _query.MaxCachedHits -= 2;
+            cache = _query.GetHitCache();
+            Assert.AreEqual(cache.Length, _query.MaxCachedHits);
+
             yield return null;
         }
         [UnityTest]
@@ -128,12 +137,11 @@ namespace PhQuery.PlayModeTests
         private void CreatePhysicsQuery()
         {
             GameObject container = new GameObject("Physics Caster");
-            _query = container.AddComponent<NullQuery>();
+            _query = container.AddComponent<EmptyQuery>();
         }
         private void AssertRay(Ray transformedRay)
         {
             _query.RaySpace = Space.Self;
-            Debug.Log($"Expected direction z: {transformedRay.direction.z}, action direction z: {_query.GetWorldRay().direction.z}");
             Assert.IsTrue(ApproximatelyEqual(transformedRay, _query.GetWorldRay()));
             _query.RaySpace = Space.World;
             Assert.IsTrue(ApproximatelyEqual(_query.Ray, _query.GetWorldRay()));

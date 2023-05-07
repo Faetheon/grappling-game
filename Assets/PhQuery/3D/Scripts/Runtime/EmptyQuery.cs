@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace PhQuery
 {
-    public class NullQuery : PhysicsQuery
+    public class EmptyQuery : PhysicsQuery
     {
         public override bool Cast()
         {
@@ -19,11 +19,10 @@ namespace PhQuery
         {
             return new RaycastHit[0];
         }
-        public override RaycastHitCache CastNonAlloc()
+        public override int CastNonAlloc(out RaycastHit[] hits)
         {
-            RaycastHitCache cache = GetHitCache();
-            cache.Size = 0;
-            return cache;
+            hits = GetHitCache();
+            return 0;
         }
         public override bool Check()
         {
@@ -33,11 +32,10 @@ namespace PhQuery
         {
             return new RaycastHit[0];
         }
-        public override RaycastHitCache OverlapNonAlloc()
+        public override int OverlapNonAlloc(out RaycastHit[] hits)
         {
-            RaycastHitCache cache = GetHitCache();
-            cache.Size = 0;
-            return cache;
+            hits = GetHitCache();
+            return 0;
         }
     }
 }

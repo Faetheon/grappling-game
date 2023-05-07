@@ -14,7 +14,7 @@ namespace PhQuery
         [SerializeField] private QueryTriggerInteraction _triggerInteraction = QueryTriggerInteraction.UseGlobal;
         [SerializeField] private int _maxCachedHits = 8;
 
-        private RaycastHitCache _hitCache;
+        private RaycastHit[] _hitCache;
 
         public Space RaySpace
         {
@@ -60,16 +60,17 @@ namespace PhQuery
                 _maxCachedHits = value;
             }
         }
+        public bool IsEmpty => GetType() == typeof(EmptyQuery);
 
-        internal RaycastHitCache GetHitCache()
+        internal RaycastHit[] GetHitCache()
         {
             if (_hitCache == null)
             {
-                _hitCache = new RaycastHitCache(_maxCachedHits);
+                _hitCache = new RaycastHit[_maxCachedHits];
             }
-            else
+            if (_hitCache.Length != _maxCachedHits)
             {
-                _hitCache.Capacity = _maxCachedHits;
+                _hitCache = new RaycastHit[_maxCachedHits];
             }
             return _hitCache;
         }
@@ -93,9 +94,9 @@ namespace PhQuery
         public abstract bool Cast();
         public abstract bool Cast(out RaycastHit hit);
         public abstract RaycastHit[] CastAll();
-        public abstract RaycastHitCache CastNonAlloc();
+        public abstract int CastNonAlloc(out RaycastHit[] hits);
         public abstract bool Check();
         public abstract RaycastHit[] Overlap();
-        public abstract RaycastHitCache OverlapNonAlloc();
+        public abstract int OverlapNonAlloc(out RaycastHit[] hits);
     }
 }
